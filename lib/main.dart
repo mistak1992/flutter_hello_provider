@@ -104,6 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
+            Consumer<Counter>(builder: (context, counter, child) {
+              return Text("当前计数器:${counter.count}");
+            }),
+            Consumer<Counter>(
+              builder: (context, counter, child) {
+                return Column(
+                  children: [Text("当前计数器:${counter.count}"), child!],
+                );
+              },
+              child: Text("不需要刷新的文字"),
+            ),
             Text(
               '${Provider.of<Counter>(context).count}',
               style: Theme.of(context).textTheme.headline4,
